@@ -16,9 +16,9 @@
     my site I wanted several pictures to be able to be scrolled through. I settled for two when i determined that 
     the default hero image can be hidden behind the cover image and then it is shown when scrolling down. I tried
     to figure out how I would implement this with seperate images for each container that is shown while maintaining
-    the parallax scrolling but wasnt able to come to a conclusion quite yet (or using Javascript is likely the way 
-    to go). I feel like you would just have to set up the modules with their own images prior and then return to the 
-    initial image at the end but Im not sure. 
+    the parallax scrolling but wasnt able to come to a conclusion quite yet. I feel like you would just have to set 
+    up the modules with their own images prior and then return to the initial image at the end but Im not sure (or
+    using Javascript is likely the way to go). 
 
     I worked with break points or media tags during the break so I was able to handle those fine. I love the way 
     that they can change a site so easily for the different sizes but I do feel its slightly inefficient to have 
