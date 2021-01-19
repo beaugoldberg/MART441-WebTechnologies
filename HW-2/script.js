@@ -1,0 +1,17 @@
+console.log("Three of my favorite websites:");
+console.log("------------------------------");
+console.log(" 1. Amazon");
+console.log(" 2. Udemy");
+console.log(" 3. Youtube");
+console.log("\n");
+console.log("Three of my favorite games:");
+console.log("---------------------------");
+console.log(" 1. Ori and The Blind Forest");
+console.log(" 2. The Last of Us");
+console.log(" 3. God of War");
+console.log("\n");
+console.log("Three of my favorite artists:");
+console.log("-----------------------------");
+console.log(" 1. Miles Davis");
+console.log(" 2. Luke Combs");
+console.log(" 3. Quinn XCII");
