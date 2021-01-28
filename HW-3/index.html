@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html style="background-image: url('./images/photo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;">
+
+<head>
+    <meta charset="utf-8">
+    <title>Interactive Game</title>
+    <meta name="author" content="Beau Goldberg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="hero" id="container">
+        <img src="./images/pug.png" width="200" height="200" class="pug-city" id="pug">
+        <div class="container">
+            <h3 id="title">Your <strong style="font-weight: bold; color: yellow;">Pudge</strong> the pug and your lost in the city. Your trying to find your way home. Do you go to the nearby dogpark for help? Or go into the city to try to find your home?</h3>
+            <div class="nav">
+                <button id="choice1" onclick="story(1);">To the park!</button>
+                <button id="choice2" onclick="story(2);">Into the city!</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
