@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap');
+
+body {
+    font-family: 'Stalinist One', cursive;
+    background-image: url('./images/background.jpg');
+}
+
+#card-holder {
+    margin: auto;
+}
+
+img { border: 3px solid black; }
+h1 { margin: auto; }
+h3 { 
+    margin-left: 1vw;
+    color: honeydew;
+    font-size: 2em;
+}
