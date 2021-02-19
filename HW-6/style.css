@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap');
+
+header {
+    align-items: center;
+    text-align: center;
+    font-size: 50pt;
+}
+
+.container {
+    width: 100vw;
+    height: 50vh;
+}
+
+body {
+    font-family: 'Stalinist One', cursive;
+    background-image: url('./images/background.jpg');
+}
+
+#card-holder {
+    margin: auto;
+}
+
+img { border: 3px solid black; }
+h1 { margin: auto; }
+h3 { 
+    margin-left: 1vw;
+    color: honeydew;
+    font-size: 2em;
+}
+
+.container table td {
+    font-size: 24pt;
+    width: 350px;
+}
+
+.container table td input {
+    font-family: 'Stalinist One', cursive;
+    width: 300px;
+    height: 30px;
+
+}
+
+#btnSubmit {
+    font-family: 'Stalinist One', cursive;
+    font-size: 18pt;
+    height: 60px;
+    width: 300px;
+    background-color: rgba(135, 207, 235, 0.445);
+}

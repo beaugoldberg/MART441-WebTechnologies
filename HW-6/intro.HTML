@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Memory Intro</title>
+        <meta name="author" content="Beau Goldberg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>Welcome to Memory!</header>
+        <hr>
+        <div class="container">
+            <table style="margin: auto;">
+                <tr>
+                    <td><label for="fname">First Name:</label></td>
+                    <td><input type="text" id="fname" name="fname"></td>
+                </tr>
+                <tr>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td><input type="text" id="lname" name="lname"></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="text" id="age" name="age"></td>
+                </tr>
+                <tr><td colspan="2"><br></td></tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" id="btnSubmit" value="PLAY" onclick="startGame();">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <label id="errMsg" style="color: red; font-size: 14pt;"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
