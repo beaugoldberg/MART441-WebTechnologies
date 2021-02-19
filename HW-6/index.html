@@ -1,32 +1,42 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Memory</title>
+        <title>Memory Intro</title>
         <meta name="author" content="Beau Goldberg">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body onload="displayBlankImages();">
-        <h1>Welcome to Memory!</h1>
+    <body>
+        <header>Welcome to Memory!</header>
         <hr>
-        <table id="card-holder">
-            <tr id="row1">
-                <td><img id="card1" src="./images/question.jpg" width="370" height="280" onclick="flipCard(0)"></td>
-                <td><img id="card2" src="./images/question.jpg" width="370" height="280" onclick="flipCard(1)"></td>
-                <td><img id="card3" src="./images/question.jpg" width="370" height="280" onclick="flipCard(2)"></td>
-                <td><img id="card4" src="./images/question.jpg" width="370" height="280" onclick="flipCard(3)"></td>
-                <td><img id="card5" src="./images/question.jpg" width="370" height="280" onclick="flipCard(4)"></td>
-            </tr>
-            <tr id="row2">
-                <td><img id="card6" src="./images/question.jpg" width="370" height="280" onclick="flipCard(5)"></td>
-                <td><img id="card7" src="./images/question.jpg" width="370" height="280" onclick="flipCard(6)"></td>
-                <td><img id="card8" src="./images/question.jpg" width="370" height="280" onclick="flipCard(7)"></td>
-                <td><img id="card9" src="./images/question.jpg" width="370" height="280" onclick="flipCard(8)"></td>
-                <td><img id="card10" src="./images/question.jpg" width="370" height="280" onclick="flipCard(9)"></td>
-            </tr>
-        </table>
-        <h3 id="score">Score: 0</h3>
+        <div class="container">
+            <table style="margin: auto;">
+                <tr>
+                    <td><label for="fname">First Name:</label></td>
+                    <td><input type="text" id="fname" name="fname"></td>
+                </tr>
+                <tr>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td><input type="text" id="lname" name="lname"></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="text" id="age" name="age"></td>
+                </tr>
+                <tr><td colspan="2"><br></td></tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" id="btnSubmit" value="PLAY" onclick="startGame();">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <label id="errMsg" style="color: red; font-size: 14pt;"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

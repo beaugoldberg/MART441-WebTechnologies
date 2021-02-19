@@ -76,7 +76,7 @@ function startGame() {
         information.age = document.getElementById("age").value;
         localStorage.setItem("info", JSON.stringify(information));
 
-        window.location = "index.html";
+        window.location = "memory.html";
     }
     else {
         document.getElementById('errMsg').innerHTML = "*Invalid Input";
