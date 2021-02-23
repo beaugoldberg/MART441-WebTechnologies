@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ViewMaster</title>
+        <meta name="author" content="Beau Goldberg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="picture.js"></script>
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body onload="initializeArray();">
+        <header>
+            <label>ViewFinder</label>
+        </header>
+        <div class="imageClass">
+            <img src="./images/constitution-square.jpg" id="mainImage">
+        </div>
+        <div class="description">
+            <label id="title1"></label>
+            <label id="description1"></label>
+        </div>
+        <div class="buttonSwap">
+            <input type="submit" id="btnSubmit" value="New Image" onclick="displayRandomImage();">
+        </div>
+    </body>
+</html>
