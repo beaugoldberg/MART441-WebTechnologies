@@ -29,7 +29,6 @@ main {
     padding-top: 2vh;
     padding-left: 2vw;
     padding-right: 2vw;
-    color: white;
     font-weight: bold;
     font-size: 14pt;
     font-family: 'Montserrat', sans-serif;
@@ -62,5 +61,5 @@ button {
     text-align: center;
     font-family: 'Architects Daughter', cursive;
     font-weight: bold;
-    font-size: 14pt;
+    font-size: 1vmax;
 }
