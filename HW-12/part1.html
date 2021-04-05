@@ -18,12 +18,32 @@
         type: Phaser.AUTO,
         width: 800,
         height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 300 },
+                debug: false
+            }
+        },
         scene: {
             preload: preload,
             create: create,
             update: update
         }
     };
+
+    var player;
+    var stars;
+    var apples;
+    var bombs;
+    var platforms;
+    var cursors;
+    var score = 0;
+    var gameOver = false;
+    var scoreText;
+    var timeText;
+    var spaceKey;
+    var startTime = 0;
 
     var game = new Phaser.Game(config);
 
@@ -33,16 +53,203 @@
         this.load.image('ground', 'assets/platform.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
+        this.load.image('apple', 'assets/apple.png');
         this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
     }
 
     function create ()
     {
+        // Adds Background Image
         this.add.image(400, 300, 'sky');
+
+        // Platform Creation
+        platforms = this.physics.add.staticGroup();
+
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 120, 'ground').setScale(0.5).refreshBody();
+        platforms.create(200, 280, 'ground').setScale(0.2).refreshBody();
+        platforms.create(430, 80, 'ground').setScale(0.1).refreshBody();
+        platforms.create(750, 220, 'ground').setScale(0.7).refreshBody();;
+
+        // Player Instantiation
+        player = this.physics.add.sprite(100,450,'dude');
+
+        player.setBounce(0.2);
+        player.setCollideWorldBounds(true);
+
+        // PLayer Animations from a Sprite Sheet
+        this.anims.create ({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'dude', frame: 4 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        // Player Input for Movement
+        cursors = this.input.keyboard.createCursorKeys();
+
+        // Star Instantiation
+        stars = this.physics.add.group({
+            key: 'star',
+            repeat: 7,
+            setXY: { x: 12, y: 0, stepX: 110 }
+        });
+
+        stars.children.iterate(function (child) {
+            child.setGravityY(Phaser.Math.FloatBetween(1, 20));
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+        });
+
+        // Apple Instantiation
+        apples = this.physics.add.group({
+            key: 'apple',
+            repeat: 5,
+            setXY: { x: 70, y: 0, stepX: 115 }
+        });
+
+        apples.children.iterate(function (child) {
+            child.setGravityY(Phaser.Math.FloatBetween(1, 20));
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+        });
+
+        // Obstacle Instantiation
+        bombs = this.physics.add.group();
+
+        // Score Handling
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+
+        // Timer Text 
+        timeText = this.add.text(640, 16, 'Time: 0', { fontSize: '32px', fill: '#000' });
+
+        // Collision Handling
+        this.physics.add.collider(player, platforms);
+        this.physics.add.collider(stars, platforms);
+        this.physics.add.collider(bombs, platforms);
+        this.physics.add.collider(apples, platforms);
+
+        this.physics.add.overlap(player, stars, collectStar, null, this);
+        this.physics.add.overlap(player, apples, collectApple, null, this);
+
+        this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+        startTime = getTime();
     }
 
     function update ()
     {
+        if (cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+
+            player.anims.play('left', true);
+        }
+        else if (cursors.right.isDown)
+        {
+            player.setVelocityX(160);
+
+            player.anims.play('right', true);
+        }
+        else
+        {
+            player.setVelocityX(0);
+
+            player.anims.play('turn');
+        }
+
+        if (cursors.space.isDown && player.body.touching.down)
+        {
+            player.setVelocityY(-330);
+        }
+
+        if (!gameOver) { timeText.setText('Time: ' + Math.round((getTime() - startTime) / 1000)); }
+    }
+
+    function collectStar (player, star)
+    {
+        star.disableBody(true, true);
+
+        score += 10;
+        scoreText.setText('Score: ' + score);
+
+        if (stars.countActive(true) === 0)
+        {
+            //  A new batch of stars to collect
+            stars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false;
+        }
+    }
+
+    function collectApple (player, apple)
+    {
+        apple.disableBody(true, true);
+
+        score += 20;
+        scoreText.setText('Score: ' + score);
+
+        if (apples.countActive(true) === 0)
+        {
+            //  A new batch of stars to collect
+            apples.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false;
+        }
+    }
+
+    function hitBomb (player, bomb)
+    {
+        this.physics.pause();
+
+        player.setTint(0xff0000);
+
+        player.anims.play('turn');
+
+        gameOver = true;
+    }
+
+    function getTime() {
+        //make a new date object
+        let d = new Date();
+
+        //return the number of milliseconds since 1 January 1970 00:00:00.
+        return d.getTime();
     }
 
 </script>
