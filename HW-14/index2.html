@@ -1,0 +1,17 @@
+<html>
+   <head>
+      <title>Sample Page</title>
+      <script>
+          function getParams() 
+          {
+            const params = new URLSearchParams(window.location.search)
+            var fName = params.get("name");
+            document.getElementById("label1").innerHTML = fName;
+          }
+      </script>
+   </head>
+   
+   <body onload="getParams();">
+      <label id="label1"></label>
+   </body>
+</html>
